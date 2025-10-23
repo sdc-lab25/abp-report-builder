@@ -1,0 +1,80 @@
+WITH week_game AS (
+    SELECT season,
+           competition,
+           week,
+           ROW_NUMBER() OVER (PARTITION BY season, competition ORDER BY localdate) AS rn
+    FROM sw_match_data
+    WHERE (home_name = '{}' OR away_name = '{}')
+      AND localdate < (
+          SELECT MAX(ff.date)
+          FROM dim_fixture ff
+          left join dim_team dt1 on ff.home_team = dt1.teamId and dt1.season = ff.season and dt1.competition = ff.competition
+          left join dim_team dt2 on ff.away_team = dt2.teamId and dt2.season = ff.season and dt2.competition = ff.competition
+          WHERE (dt1.teamName = '{}' and dt2.teamName= '{}')
+          and ff.season = '{}' and ff.competition = '{}'
+      )
+),
+lastdate AS (
+    SELECT ww.season,
+           ww.competition,
+           ww.week,
+           MAX(md.localdate) AS localdate
+    FROM week_game ww
+    INNER JOIN sw_match_data md
+        ON md.season = ww.season
+       AND ww.competition = md.competition
+       AND ww.week = md.week
+    WHERE rn = (SELECT MAX(rn) FROM week_game)
+    GROUP BY md.season, md.competition, md.week
+),
+season AS (
+    SELECT DISTINCT season, competition, localdate
+    FROM sw_match_data
+    WHERE home_name = '{}'
+      AND away_name = '{}'
+),
+teams AS (
+    SELECT DISTINCT dd.teamName,
+                    ss.season,
+                    ss.competition
+    FROM dim_team dd
+    INNER JOIN season ss
+        ON dd.season = ss.season
+       AND dd.competition = ss.competition
+),
+matches AS (
+    SELECT t.teamName,
+           md.matchId,
+           md.localdate,
+           case when md.home_name = t.teamName then 'home' when md.away_name = t.teamName then 'away' end as field,
+           md.season,
+           md.competition,
+           ROW_NUMBER() OVER (
+               PARTITION BY t.teamName
+               ORDER BY md.localdate DESC
+           ) AS rn
+    FROM teams t
+    left JOIN sw_match_data md
+        ON (md.home_name = t.teamName OR md.away_name = t.teamName)
+    CROSS JOIN lastdate l
+    WHERE md.localdate < l.localdate
+), games as (
+SELECT distinct matchId
+FROM matches
+WHERE rn <= {}
+ORDER BY teamName, localdate DESC
+)
+select ee.id,
+ee.season,
+ee.competition,
+ee.type_displayName,
+ee.matchId,
+ee.teamId,
+ee.teamName,ee.oppositionTeamName,ee.playerName,ee.playerId,ee.pase_receptor_id,ee.time_seconds,ee.period_value,
+ee.type_value,ee.outcomeType_value,ee.qualifiers,ee.team_1,ee.time_delta_0,ee.time_delta_1,ee.x,ee.y,ee.endX,ee.endY,
+ee.tercio_id,ee.tercio_id_end,
+ee.carril_id,ee.carril_id_end,
+ee.bin_x_ini,ee.bin_y_ini,ee.bin_x_end,ee.bin_y_end,
+ee.is_abp,ee.isGoal,ee.xG,ee.xA,ee.ps_xG,ee.bodypart_name
+from fact_events ee
+inner join games gg on ee.matchId=gg.matchId

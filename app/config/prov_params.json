@@ -1,0 +1,19 @@
+{
+  "opta": {
+    "max_x": 100,
+    "max_y": 100,
+    "lim_y": [45.2, 54.8],
+    "lim_z": [0, 38],
+    "post_y_1": [44.2, 45.2],
+    "post_y_2": [54.8, 55.8],
+    "post_z": [38, 42],
+    "shot_actions": ["Goal", "SavedShot", "MissedShots", "SavedShot","ShotOnPost"],
+    "goal_col": "isGoal",
+    "owngoal_col": "isOwnGoal",
+    "gzcol":"goalMouthZ",
+    "gycol":"goalMouthY",
+    "xcol":"x",
+    "ycol":"y",
+    "type_col":"type_displayName"
+  }
+}

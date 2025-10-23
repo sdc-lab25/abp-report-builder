@@ -1,0 +1,9 @@
+{
+  "db_watford": {
+    "host": "dpe.cl0glysfjbui.eu-west-1.rds.amazonaws.com",
+    "port": 3306,
+    "database": "db_watford",
+    "user": "admin",
+    "password":"dpeQwertyuiop135790_!#"
+    }
+  }

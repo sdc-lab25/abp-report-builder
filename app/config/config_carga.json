@@ -1,0 +1,38 @@
+{
+  "wyscout": {
+    "seasons": ["2024-2025","2025-2026"],
+    "datos_carga": {
+      "jugadores": {
+        "origen": "Datos/WyScout/{}/Jugadores/jugadores.csv",
+        "destino": "players_scouting",
+        "metodo":"replace"
+      },
+      "equipos": {
+        "origen": "Datos/WyScout/{}/Equipos/equipos.csv",
+        "destino": "teams_scouting",
+        "metodo":"replace"
+      },
+      "competiciones": {
+        "origen": "Datos/WyScout/Competiciones.xlsx",
+        "destino": "competitions",
+	  "metodo":"replace"
+      }
+    }
+  },
+    "opta":{
+    "recargar_modelos":"true",
+    "metodo_lectura_events":"bbdd",
+    "datos_carga": {
+      "FACT_EVENTS": {
+        "destino":"fact_events",
+        "metodo":"append",
+        "recargar":"true"
+      },
+      "FACT_PLAYER_SEASON": {
+        "destino":"fact_player_season",
+        "metodo":"append",
+        "recargar":"true"
+      }
+    }
+  }
+}

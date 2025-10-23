@@ -1,0 +1,77 @@
+{"filtros_data":
+    {"minutes":"minutes_threshold"},
+"calculo_indicadores_nivel":{
+  "minutes_threshold": 500,
+  "minutes_threshold_pos":300,
+  "var_threshold": 0.01,
+  "var_exito": "top6_sn",
+  "var_score": "ws_score",
+  "peso_importancia":0.7,
+  "train":0,
+  "metricas_calculo": {"GK": [
+    "ob_interventions_padj",
+    "passes_long_succ_pct",
+    "passes_op_succ_pct",
+    "passes_open_succ_pct",
+    "passes_prog_succ_pct",
+    "aerials_won_padj",
+    "ball_recoveries_padj",
+    "sweeper_succ_padj",
+    "claims_tocross_pct",
+    "claims_blocked_padj",
+    "shot_avoidance_padj",
+    "goals_prevented_p90",
+    "saves_blocked_sot_pct",
+    "saves_safe_sot_pct",
+    "saves_sot_pct",
+"saves_boxdanger_sot_pct",
+"saves_blocked_pct",
+"saves_goalside_sot_pct"
+  ]
+  }
+},
+"calculo_indicadores_perfil":{
+  "minutes_threshold": 500,
+  "minutes_threshold_pos":300,
+  "train":0,
+  "var_threshold": 0.01,
+  "peso_importancia":0.7,
+  "cols_dim":["playerId","playerName","season","competition","position","teamId","teamName"],
+  "metricas_calculo": {"GK": [
+    "ob_interventions_padj",
+    "passes_long_succ_pct",
+    "passes_op_succ_pct",
+    "passes_open_succ_pct",
+    "passes_prog_succ_pct",
+    "aerials_won_padj",
+    "ball_recoveries_padj",
+    "sweeper_succ_padj",
+    "claims_tocross_pct",
+    "claims_blocked_padj",
+    "shot_avoidance_padj",
+    "goals_prevented_p90",
+    "saves_blocked_sot_pct",
+    "saves_safe_sot_pct",
+    "saves_sot_pct",
+"saves_boxdanger_sot_pct",
+"saves_blocked_pct",
+"saves_goalside_sot_pct"
+  ]
+  }
+},
+"calculo_indicadores_perfil_team":{
+  "train":0,
+  "var_threshold": 0.001
+  },
+"calculo_prototipos":{
+    "niveles": {
+	"Nivel Bajo":[0,0.4],
+	"Nivel Medio":[0.4,0.6],
+	"Nivel Alto":[0.6,0.8],
+	"Nivel Top":[0.8,1]},
+	"especiales":
+	{
+	"big5":["laliga","premier-league","ger-bundesliga","ita-seriea","fra-ligue1"]
+	}
+}
+}

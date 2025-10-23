@@ -1,0 +1,617 @@
+{
+  "docs": [
+    {
+      "name": "page1",
+      "template": "1.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.98, "pos_v_cm": 2.3 },
+      "pipeline": ["page1_replace_title","page1_replace_matchday","insert_badge"]
+    },
+    {
+      "name": "page2",
+      "template": "2.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first" },
+      "pipeline": ["page_common_replace_header_md_code_ha","page2_replace_paragraphs","page2_fill_table","insert_badge"]
+    },
+    {
+      "name": "page3",
+      "template": "3.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": -0.35, "pos_v_cm": -0.64 },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "insert_badge"
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "team_square_image",
+            "args": { "team": "coach_team" },
+            "pos_h_cm": 3.5,
+            "pos_v_cm": 3,
+            "width_cm": 4.07,
+            "height_cm": 4.07
+          },
+          {
+            "builder": "team_square_image",
+            "args": { "team": "opponent_team" },
+            "pos_h_cm": 3.5,
+            "pos_v_cm": 11,
+            "width_cm": 4.07,
+            "height_cm": 4.07
+          },
+          {
+            "builder": "bars_heights_coach",
+            "args": {},
+            "pos_h_cm": 10, "pos_v_cm": 2,
+            "width_cm": 20.68, "height_cm": 8.151
+          },
+          {
+            "builder": "bars_heights_rival",
+            "args": {},
+            "pos_h_cm": 10, "pos_v_cm": 10,
+            "width_cm": 20.68, "height_cm": 8.151
+          }
+        ]
+      }
+    },
+    {
+      "name": "page4",
+      "template": "4.docx",
+      "badge": {
+        "width_cm": 2.72,
+        "height_cm": 2.72,
+        "pos_h_cm": 0.10,
+        "pos_v_cm": 0.17
+      },
+      "table": {
+        "target": "first",
+        "builder": "team_stats_detailed"
+      },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "page_fill_table_from_config",
+        "insert_badge"
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_team_overview",
+            "args": { "field": "home", "gby": "team_formation_desc", "season": "{{season}}" },
+            "pos_h_cm": 1.1,
+            "pos_v_cm": 5,
+            "width_cm": 7.51,
+            "height_cm": 3.65
+          },
+          {
+            "builder": "plot_team_overview",
+            "args": { "field": "away", "gby": "team_formation_desc", "season": "{{season}}" },
+            "pos_h_cm": 9.15,
+            "pos_v_cm": 5,
+            "width_cm": 7.51,
+            "height_cm": 3.65
+          },
+          {
+            "builder": "plot_team_overview",
+            "args": { "field": "home", "gby": "changes_num", "season": "{{season}}" },
+            "pos_h_cm": 17.35,
+            "pos_v_cm": 5,
+            "width_cm": 7.51,
+            "height_cm": 3.65
+          },
+          {
+            "builder": "plot_team_overview",
+            "args": { "field": "away", "gby": "changes_num", "season": "{{season}}" },
+            "pos_h_cm": 25.25,
+            "pos_v_cm": 5,
+            "width_cm": 7.51,
+            "height_cm": 3.65
+          }
+        ]
+      }
+    },
+    {
+      "name": "page5",
+      "template": "5.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "players_overview" },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page6",
+      "template": "6.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page7",
+      "template": "7.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_set_pieces", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page8",
+      "template": "8.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page9",
+      "template": "9.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_corners", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page10",
+      "template": "10.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_corners", "side": "right", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page11",
+      "template": "11.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_corners", "side": "left", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page12",
+      "template": "12.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "left", "defensive": true },
+            "pos_h_cm": 0.25,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "right", "defensive": true },
+            "pos_h_cm": 17,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          }
+        ]
+      }
+    },
+    {
+      "name": "page13",
+      "template": "13.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "corner", "action_subtype": "left", "defensive": true },
+            "pos_h_cm": 0.25,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          },
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "corner", "action_subtype": "right", "defensive": true },
+            "pos_h_cm": 17,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          }
+        ]
+      }
+    },
+    {
+      "name": "page14",
+      "template": "14.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page15",
+      "template": "15.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_dfk", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page16",
+      "template": "16.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_ifk", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page17",
+      "template": "17.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_ifks", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page18",
+      "template": "18.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "ifkbox", "action_subtype": "", "defensive": true },
+            "pos_h_cm": 2.75,
+            "pos_v_cm": 5,
+            "width_cm": 12.09,
+            "height_cm": 12.44
+          },
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "ifk", "action_subtype": "", "defensive": true },
+            "pos_h_cm": 17,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 12.44
+          }
+        ]
+      }
+    },
+    {
+      "name": "page19",
+      "template": "19.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page20",
+      "template": "20.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_throwins", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page21",
+      "template": "21.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_throwins", "side": "right", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page22",
+      "template": "22.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_throwins", "side": "left", "defensive": true },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page23",
+      "template": "23.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "throwinbox", "action_subtype": "", "defensive": true },
+            "pos_h_cm": 0.25,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          },
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "throwin", "action_subtype": "", "defensive": true },
+            "pos_h_cm": 17,
+            "pos_v_cm": 5,
+            "width_cm": 16.4,
+            "height_cm": 10.99
+          }
+        ]
+      }
+    },
+    {
+      "name": "page24",
+      "template": "24.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page25",
+      "template": "25.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_set_pieces", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page26",
+      "template": "26.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page27",
+      "template": "27.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_corners", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page28",
+      "template": "28.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_corners", "side": "right", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page29",
+      "template": "29.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pk_corners", "side": "left" },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","page_fill_table_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "left_long_in" },
+            "pos_h_cm": 0.2,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "left_short" },
+            "pos_h_cm": 11.5,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "left_long_out" },
+            "pos_h_cm": 22.75,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          }
+        ]
+      }
+    },
+    {
+      "name": "page30",
+      "template": "30.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pk_corners", "side": "right" },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","page_fill_table_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "right_long_in" },
+            "pos_h_cm": 0.2,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "right_short" },
+            "pos_h_cm": 11.5,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "corner", "action_subtype": "right_long_out" },
+            "pos_h_cm": 22.75,
+            "pos_v_cm": 4.7,
+            "width_cm": 11,
+            "height_cm": 5.4
+          }
+        ]
+      }
+    },
+    {
+      "name": "page31",
+      "template": "31.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pc_corners" },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_insert_images_from_config","page_fill_table_from_config","insert_badge"],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "corner", "action_subtype": "left" },
+            "pos_h_cm": 2.1,
+            "pos_v_cm": 3.75,
+            "width_cm": 14.45,
+            "height_cm": 8.95
+          },
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "corner", "action_subtype": "right" },
+            "pos_h_cm": 17.25,
+            "pos_v_cm": 3.75,
+            "width_cm": 14.45,
+            "height_cm": 8.95
+          }
+        ]
+      }
+    },
+    {
+      "name": "page32",
+      "template": "32.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page33",
+      "template": "33.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_dfk", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page34",
+      "template": "34.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_ifks", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page35",
+      "template": "35.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_ifk", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page36",
+      "template": "36.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pk_ifks" },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "page_fill_table_from_config",
+        "insert_badge"
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "ifkbox" },
+            "pos_h_cm": 1.5,
+            "pos_v_cm": 4.7,
+            "width_cm": 12.09,
+            "height_cm": 12.44
+          }
+        ]
+      }
+    },
+    {
+      "name": "page37",
+      "template": "37.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pc_ifks" },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "page_fill_table_from_config",
+        "insert_badge"
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "ifk" },
+            "pos_h_cm": 9.7,
+            "pos_v_cm": 3.75,
+            "width_cm": 14,
+            "height_cm": 8.75
+          }
+        ]
+      }
+    },
+    {
+      "name": "page38",
+      "template": "38.docx",
+      "badge": { "width_cm": 6.85, "height_cm": 6.85, "pos_h_cm": 8.66, "pos_v_cm": 2.62 },
+      "pipeline": ["page_common_replace_header_md_code_ha","insert_badge"]
+    },
+    {
+      "name": "page39",
+      "template": "39.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "mk_throwins", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","page_highlight_both_teams","insert_badge"]
+    },
+    {
+      "name": "page40",
+      "template": "40.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_throwins", "side": "right", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page41",
+      "template": "41.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_summ_throwins", "side": "left", "defensive": false },
+      "pipeline": ["page_common_replace_header_md_code_ha","page_fill_table_from_config","insert_badge"]
+    },
+    {
+      "name": "page42",
+      "template": "42.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "tables": [
+        { "target": "first",  "builder": "_pk_throwins", "side": "left"  },
+        { "target": "second", "builder": "_pk_throwins", "side": "right" }
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "throwinbox", "action_subtype": "left" },
+            "pos_h_cm": 3.1,
+            "pos_v_cm": 3.9,
+            "width_cm": 12.99,
+            "height_cm": 9.6
+          },
+          {
+            "builder": "plot_shot_creating_actions",
+            "args": { "action_type": "throwinbox", "action_subtype": "right" },
+            "pos_h_cm": 17.5,
+            "pos_v_cm": 3.9,
+            "width_cm": 12.99,
+            "height_cm": 9.6
+          }
+        ]
+      },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "page_fill_table_from_config",
+        "insert_badge"
+      ]
+    },
+    {
+      "name": "page43",
+      "template": "43.docx",
+      "badge": { "width_cm": 2.72, "height_cm": 2.72, "pos_h_cm": 0.10, "pos_v_cm": 0.17 },
+      "table": { "target": "first", "builder": "_pc_throwins" },
+      "pipeline": [
+        "page_common_replace_header_md_code_ha",
+        "page_insert_images_from_config",
+        "page_fill_table_from_config",
+        "insert_badge"
+      ],
+      "images": {
+        "items": [
+          {
+            "builder": "plot_shot_actions",
+            "args": { "action_type": "throwin" },
+            "pos_h_cm": 9.7,
+            "pos_v_cm": 3.75,
+            "width_cm": 14,
+            "height_cm": 8.75
+          }
+        ]
+      }
+    },
+    {
+      "name": "page44",
+      "template": "44.docx",
+      "placeholder": true,
+      "pipeline": []
+    }
+  ]
+}
