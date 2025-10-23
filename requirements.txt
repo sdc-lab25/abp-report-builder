@@ -10,3 +10,4 @@ requests==2.32.5
 seaborn==0.11.1
 SQLAlchemy==2.0.44
 streamlit==1.41.0
+PyMySQL==1.1.0
