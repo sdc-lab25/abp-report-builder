@@ -10,9 +10,19 @@ from sqlalchemy import create_engine
 import json
 
 def get_conn(ruta_config):
-    with open('{}/config.json'.format(ruta_config), 'r') as file:
-        config_data = json.load(file)
-    engine = create_engine(f"mysql+mysqlconnector://{config_data["db_watford"]["user"]}:{config_data["db_watford"]["password"]}@{config_data["db_watford"]["host"]}:{config_data["db_watford"]["port"]}/{config_data["db_watford"]["database"]}")
+    user = st.secrets["db_watford"]["user"]
+    password = st.secrets["db_watford"]["password"]
+    host = st.secrets["db_watford"]["host"]
+    port = st.secrets["db_watford"]["port"]
+    database = st.secrets["db_watford"]["database"]
+    #user = os.environ.get("DB_WATFORD__USER")
+    #password = os.environ.get("DB_WATFORD__PASSWORD")
+    #host = os.environ.get("DB_WATFORD__HOST")
+    #port = os.environ.get("DB_WATFORD__PORT")
+    #database = os.environ.get("DB_WATFORD__DATABASE")
+    engine = create_engine(
+        f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
+    )
     return engine
 
 def clean_df(df):
